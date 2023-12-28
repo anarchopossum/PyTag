@@ -14,7 +14,7 @@ def prompt(location: str, text: str, options: dict[str,str]):
         value = input("Type a letter option > ").lower()
         if value in options.keys():
             clear_screen()
-            return(options.get(value))
+            return(options.get(value).lower())
         elif value == "q":
             clear_screen()
             exit()
