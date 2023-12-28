@@ -1,22 +1,23 @@
 map = {
-        "title screen": {
+        "Title Screen": {
             "loc_name" : "Game Title",
             "loc_text" : """
-            Welcome to the test game. You can quit the game at any point just type q and hit enter. Best of luck! We also love pumkin pie and stuff you should try it. \nNew Line!!!!
+            Welcome to the test game. You can quit the game at any point just type q and hit enter. Best of luck! This is currently a demo. If you would like to make your own story. try to modify the map.py file
+            type the letter a to go to the next area
             """,
             "loc_opt" : {
-                "a": "Testing loc",
+                "a": "Introduction",
                 }
             },
-        "Testing loc": {
-            "loc_name" : "Testing Grounds",
+        "Introduction": {
+            "loc_name" : "Intro",
             "loc_text" : """
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean velit felis, aliquam ultricies nulla et, luctus tempus lorem. Proin tincidunt odio sed quam rutrum interdum. Nulla vitae libero quis libero blandit accumsan eget a sem. Praesent nec ultrices sem, ut ultricies felis. Donec sollicitudin mi auctor libero tempus tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra nisl in tellus condimentum consectetur. Fusce blandit maximus nisl a finibus. Vivamus vehicula, purus nec condimentum placerat, dui odio sodales libero, sed posuere odio metus in est. Donec nec aliquam diam. Fusce in aliquet felis. Donec posuere odio quis nunc cursus, a suscipit elit placerat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam in lorem tortor. Cras scelerisque non urna in faucibus. Nullam lobortis, felis ac placerat convallis, risus libero ultrices lorem, ac pretium diam ante non orci.
+            Welcome to Pytag (Python Text Adventure Game)! With this engine you can make your own text adventure games. Pytag was created with expandability in mind, So if you are just getting into coding, or an expert you can comfortably
+            start building your own world and stories.
             """,
             "loc_opt" : {
-            "j": "title screen",
-            "b": "Park",
-            "c": "Library"
+            "a": "Title Screen",
+            "b": "Next",
         }
             } 
         }

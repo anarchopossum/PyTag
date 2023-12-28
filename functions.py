@@ -1,7 +1,8 @@
 import os
 import time
 
-line_len = 54 
+line_len = 54
+
 
 def prompt(location: str, text: str, options: dict[str,str]): 
     while 1 == 1:
@@ -40,10 +41,15 @@ def text_format(location:str, text: str):
     # line text formater
     words = text.split()
     temp_str = ''
+    # if the current temp string + the next word is <= 50 add the next word into the
+    # string followed by a space
     for value in words:
         if len(temp_str + value) + 1 <= 50:
             temp_str += value + " "
+            if value == words[-1]:
+                print(f"█ {temp_str:<50} █")
         else:
+        # if it's greater than 50 print the line and set the tep string to the current word.
             print(f"█ {temp_str:<50} █")
             temp_str = value + " "
     print(f"█  {' ':^48}  █")
