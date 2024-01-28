@@ -3,25 +3,34 @@ import time
 
 line_len = 54
 
+class map():
+    def __init__(self) -> None:
+        pass
 
-def prompt(location: str, text: str, options: dict[str,str]): 
+class location():
+    def __init__(self, loc_data: dict) -> None:
+        self.title = loc_data['title_screen']['title']
+
+
+def prompt(location_title: str, prompt_text: str, options: tuple): 
     while 1 == 1:
-        text_format(location, text)
-        opt_format(options)
+        text_format(location_title, prompt_text)
+        formatted_options = opt_format(options)
 
         # input management
         print()
-        value = input("Type a letter option > ").lower()
-        if value in options.keys():
+        selection = input("Type a letter option > ").lower()
+        if selection in formatted_options.keys():
             clear_screen()
-            return(options.get(value).lower())
-        elif value == "q":
+            # Debug print(formatted_options[selection][1])
+            return formatted_options[selection][1]
+        elif selection == "q":
             clear_screen()
             exit()
         else:
             print("\033[F", end="")
             print("\033[F", end="")
-            print(value, "is not a valid option")
+            print(selection, "is not a valid option")
             time.sleep(2.5)
             clear_screen()
 
@@ -55,12 +64,24 @@ def text_format(location:str, text: str):
     print(f"█  {' ':^48}  █")
     print("█" * line_len)
 
-def opt_format(options: dict):
+def opt_format(options: tuple):
+    formatted_dict = tup2dict(options)
     print(f"█  {' ':^48}  █")
-    for key, selection in options.items():
-        print(f"█ {key+') '+selection: <50} █")
+    for key, selection in formatted_dict.items():
+        print(f"█ {key+') '+selection[0]: <50} █")
+        # print(f"{selection[1]}")
     print(f"█  {' ':^48}  █")
     print("█" * line_len)
+    return formatted_dict
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
+
+def tup2dict(option_tup: tuple):
+    opt_dictionary = {}
+    letters = [chr(x) for x in range(ord('a'), ord('z') + 1)] 
+    opt_zip = list(zip(letters, option_tup))
+    for letter, loc_data in opt_zip:
+        # print(f"{letter}) {loc_data}")
+        opt_dictionary.update({letter: loc_data})
+    return opt_dictionary
