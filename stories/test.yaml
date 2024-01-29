@@ -1,5 +1,7 @@
+game_name: Tutorial
+description: this is a Tutorial to explain how pyTAG
 title_screen:
-  Title: "Game Title"
+  Title: "Intro-Title:"
   Prompt: >
     Welcome to the test game. You can quit the game at any point just type q and hit enter. Best of luck! 
     This is currently a demo. If you would like to make your own story. try to modify the map.py file
