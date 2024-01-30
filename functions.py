@@ -3,9 +3,6 @@ import time
 
 line_len = 54
 
-class map():
-    def __init__(self) -> None:
-        pass
 
 class location():
     def __init__(self, loc_data: dict) -> None:

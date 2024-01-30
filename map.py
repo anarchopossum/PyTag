@@ -1,6 +1,15 @@
 import yaml
-from map import yamlindex
 from pathlib import Path
+
+class gamelist:
+    def __init__(self) -> None:
+        self.gme_list = []
+
+class game:
+    def __init__(self,gme_file) -> None:
+        self.name = gme_file.get("game_name", None)
+        self.description = gme_file.get("description", None)
+        self.map = gme_file["map"]
 
 def list_story(story_list):
     for each in story_list:
@@ -9,7 +18,6 @@ def list_story(story_list):
 def story_collect():
     story_list = []
     p = Path("stories")
-
     # for each yaml file in directory
     # Open the file
     # safe_load it using yaml
@@ -20,7 +28,7 @@ def story_collect():
             story_list.append(processed_story)
     return story_list
 
-
+map_opt = None
 
 map = {
         "title_screen": {
