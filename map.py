@@ -5,6 +5,20 @@ class gamelist:
     def __init__(self) -> None:
         self.gme_list = []
 
+
+    def story_collect(self):
+        p = Path("stories")
+        # for each yaml file in directory
+        # Open the file
+        # safe_load it using yaml
+        # assert that it's a string
+        for each in list(p.glob('*.[yaml][yml]')):
+            with open(each) as file:
+                safeloaded_story = yaml.safe_load(file)
+                processed_story = game(safeloaded_story)
+                self.gme_list.append(processed_story)
+        return self.gme_list
+
 class game:
     def __init__(self,gme_file) -> None:
         self.name = gme_file.get("game_name", None)
