@@ -13,6 +13,10 @@ def test_yamlindex():
     for each in list(p.glob('*.[yaml][yml]')):
         with open(each) as file:
             story_file = yaml.safe_load(file)
-            
-            # assert type(yamlindex(story_file['game_name'])) == str
+            assert type(yamlindex(story_file['game_name'])) == str
+
+def map_object():
+    
+    p = Path("stories/test.yaml")
+
 

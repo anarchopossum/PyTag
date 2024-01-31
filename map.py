@@ -2,45 +2,51 @@ import yaml
 from pathlib import Path
 
 class gamelist:
-    def __init__(self) -> None:
+
+    def __init__(self):
         self.gme_list = []
-
-
-    def story_collect(self):
         p = Path("stories")
         # for each yaml file in directory
         # Open the file
-        # safe_load it using yaml
-        # assert that it's a string
+        # safe_load it using yaml (converts it to Dictionary)
+        # add Dictionary to list
         for each in list(p.glob('*.[yaml][yml]')):
             with open(each) as file:
                 safeloaded_story = yaml.safe_load(file)
                 processed_story = game(safeloaded_story)
-                self.gme_list.append(processed_story)
-        return self.gme_list
+                story_object = game(processed_story)
+                self.gme_list.append(story_object)
+        # return self.gme_list
+
+    def namelist(self):
+        for each in self.gme_list:
+           pass 
+
+
 
 class game:
-    def __init__(self,gme_file) -> None:
-        self.name = gme_file.get("game_name", None)
-        self.description = gme_file.get("description", None)
-        self.map = gme_file["map"]
+    def __init__(self,gme_dict) -> None:
+        self.name = gme_dict["game_name"]
+        # .get to state optionality
+        self.description = gme_dict.get("description", None)
+        self.map = gme_dict["map"]
 
-def list_story(story_list):
-    for each in story_list:
-       pass 
-
-def story_collect():
-    story_list = []
-    p = Path("stories")
-    # for each yaml file in directory
-    # Open the file
-    # safe_load it using yaml
-    # assert that it's a string
-    for each in list(p.glob('*.[yaml][yml]')):
-        with open(each) as file:
-            processed_story = yaml.safe_load(file)
-            story_list.append(processed_story)
-    return story_list
+#def list_story(story_list):
+#    for each in story_list:
+#       pass 
+#
+#def story_collect():
+#    story_list = []
+#    p = Path("stories")
+#    # for each yaml file in directory
+#    # Open the file
+#    # safe_load it using yaml (converts it to Dictionary)
+#    # add Dictionary to list
+#    for each in list(p.glob('*.[yaml][yml]')):
+#        with open(each) as file:
+#            processed_story = yaml.safe_load(file)
+#            story_list.append(processed_story)
+#    return story_list
 
 map_opt = None
 
@@ -56,12 +62,13 @@ map = {
             },
 
         "game_selection": {
-            "loc_name" : "Intro",
+            "loc_name" : "Game Select",
             "loc_text" : """
-            Welcome to Pytag (Python Text Adventure Game)! With this engine you can make your own text adventure games. Pytag was created with expandability in mind, So if you are just getting into coding, or an expert you can comfortably
-            start building your own world and stories.
+            Select a Game to play
             """,
             "loc_opt": (("Main Menu", "title_screen"),("Next","introduction2"),)
-        }
+        },
+        "game_confirmation": None
+
     }
 
