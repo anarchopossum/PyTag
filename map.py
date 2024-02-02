@@ -1,30 +1,38 @@
 import yaml
 from pathlib import Path
 
-class gamelist:
+class Gamelist:
 
     def __init__(self):
         self.gme_list = []
-        p = Path("stories")
+
+    def generate_list(self):
+        p = Path("stories/")
         # for each yaml file in directory
         # Open the file
         # safe_load it using yaml (converts it to Dictionary)
-        # add Dictionary to list
-        for each in list(p.glob('*.[yaml][yml]')):
+        # add game_object to list
+
+        # try to find a way to add yml and yaml
+        # print("glob", list(p.glob('*.{yaml,yml}')))
+        for each in list(p.glob('*.yaml')):
             with open(each) as file:
                 safeloaded_story = yaml.safe_load(file)
-                processed_story = game(safeloaded_story)
-                story_object = game(processed_story)
-                self.gme_list.append(story_object)
+                processed_story = Game(safeloaded_story)
+                print(processed_story)
+                # story_object = Game(processed_story)
+                self.gme_list.append(processed_story)
+
+                print(self.gme_list)
         # return self.gme_list
 
     def namelist(self):
         for each in self.gme_list:
-           pass 
+           return(each.name)
 
 
 
-class game:
+class Game:
     def __init__(self,gme_dict) -> None:
         self.name = gme_dict["game_name"]
         # .get to state optionality
@@ -66,9 +74,22 @@ map = {
             "loc_text" : """
             Select a Game to play
             """,
-            "loc_opt": (("Main Menu", "title_screen"),("Next","introduction2"),)
+            # Grabs the list of maps
+            "loc_opt": [None, ("Main Menu", "title_screen"),]
         },
-        "game_confirmation": None
+        "game_confirmation": {
+            # Grabs the selected map's Name, description, and data
+            "loc_name" : None,
+            "loc_text" : None,
+            "loc_opt" : ((None, None),("Back", "game_selection"),)
+            },
 
     }
-
+test_list = Gamelist()
+test_list.generate_list()
+print(len(test_list.gme_list))
+print(f"test_list names: {test_list.namelist()}")
+# output_list = test_list.generate_list()
+#print(gamelist.generate_list)
+#for each in test_list:
+#    print(each)

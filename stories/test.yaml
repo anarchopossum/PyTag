@@ -1,4 +1,4 @@
-game_name: [Tutorial, game_confirmation]
+game_name: Tutorial
 description: this is a Tutorial to explain how pyTAG
 map:
   title_screen:
