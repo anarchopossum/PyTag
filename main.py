@@ -1,5 +1,5 @@
 import functions as fnc
-import map as m
+import game_map as m
 
 cur_position = m.map["title_screen"]
 while True:
