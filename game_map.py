@@ -31,6 +31,7 @@ class Gamelist:
         for each in self.gme_list:
             temp_tup = (each.name, each)
             game_selections.append(temp_tup)
+        game_selections.append(("Back","game_selections"))
         return game_selections 
 
 
@@ -59,7 +60,9 @@ class Game:
 #            story_list.append(processed_story)
 #    return story_list
 
-map_opt = None
+test_list = Gamelist()
+test_list.generate_list()
+map_opt = test_list.name_list()
 
 map = {
         "title_screen": {
@@ -78,7 +81,7 @@ map = {
             Select a Game to play
             """,
             # Grabs the list of maps
-            "loc_opt": [None, ("Main Menu", "title_screen"),]
+            "loc_opt": map_opt 
         },
         "game_confirmation": {
             # Grabs the selected map's Name, description, and data
@@ -90,6 +93,8 @@ map = {
     }
 test_list = Gamelist()
 test_list.generate_list()
+map_opt = test_list.name_list()
+
 print(len(test_list.gme_list))
 print(f"test_list names: {test_list.name_list()}")
 # output_list = test_list.generate_list()
