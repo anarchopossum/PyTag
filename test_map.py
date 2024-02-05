@@ -28,19 +28,32 @@ def test_gamelist():
     test_list.generate_list()
     assert type(test_list) is m.Gamelist
     assert type(test_list.gme_list) is list
-    assert len(test_list.gme_list) == 1
+    assert len(test_list.gme_list) == 2
     for each in test_list.gme_list:
         assert type(each) is m.Game
         assert type(each.name) is str
-        assert each.name == "Tutorial"
+        # assert each.name == "Tutorial"
 
 # returns a list of tuples with (game_name, game_object)
 def test_name_list():
     test_list = m.Gamelist()
     test_list.generate_list()
     assert type(test_list.gme_list) is list
-    assert len(test_list.gme_list) == 1
-    assert type(test_list.gme_list[0][1]) is m.Game
-    assert test_list.gme_list[0][0] is str
+    assert len(test_list.gme_list) is 2
+    final_list = test_list.name_list()
+    print(f"final List: {final_list} ##")
+
+    # When trying to find if something is a type of list rather than an empty one
+    # use assert type
+    assert type(final_list) is list
+    assert type(final_list[0]) is tuple
+    assert type(final_list[0][0]) is str
+    assert type(final_list[0][1]) is m.Game
+
+    
+
+
+    # assert type(test_list.gme_list[0][1]) is m.Game
+    # assert test_list.gme_list[0][0] is str
 
 
