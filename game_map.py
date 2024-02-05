@@ -31,7 +31,7 @@ class Gamelist:
         for each in self.gme_list:
             temp_tup = (each.name, each)
             game_selections.append(temp_tup)
-        game_selections.append(("Back","game_selections"))
+        game_selections.append(("Back","title_screen"))
         return game_selections 
 
 
@@ -91,12 +91,9 @@ map = {
             },
 
     }
-test_list = Gamelist()
-test_list.generate_list()
-map_opt = test_list.name_list()
 
-print(len(test_list.gme_list))
-print(f"test_list names: {test_list.name_list()}")
+# print(len(test_list.gme_list))
+# print(f"test_list names: {test_list.name_list()}")
 # output_list = test_list.generate_list()
 #print(gamelist.generate_list)
 #for each in test_list:
