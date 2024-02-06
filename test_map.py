@@ -51,7 +51,17 @@ def test_name_list():
     assert type(final_list[0][1]) is m.Game
 
 def test_map_switch():
-    pass
+    test_list = m.Gamelist()
+    test_list.generate_list()
+    assert type(test_list.gme_list) is list
+    assert len(test_list.gme_list) is 2
+    final_list = test_list.name_list()
+    assert type(final_list[0][1]) is m.Game
+    # Check if game has map dictionary
+    assert type(final_list[0][1].map) is dict
+    assert final_list[0][1].map is "title_screen"
+
+
 
 
 

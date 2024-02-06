@@ -19,11 +19,11 @@ class Gamelist:
             with open(each) as file:
                 safeloaded_story = yaml.safe_load(file)
                 processed_story = Game(safeloaded_story)
-                print(processed_story)
+                # print(processed_story)
                 # story_object = Game(processed_story)
                 self.gme_list.append(processed_story)
 
-                print(self.gme_list)
+                # print(self.gme_list)
         # return self.gme_list
 
     def name_list(self):
@@ -34,8 +34,6 @@ class Gamelist:
         game_selections.append(("Back","title_screen"))
         return game_selections 
 
-
-
 class Game:
     def __init__(self,gme_dict) -> None:
         self.name = gme_dict["game_name"]
@@ -43,8 +41,12 @@ class Game:
         self.description = gme_dict.get("description", None)
         self.map = gme_dict["map"]
 
-def map_switch():
+def game_info():
     pass
+
+def map_switch(game_obj):
+    map = game_obj.map
+    return ("Accept","title_screen")
 
 
 
@@ -76,7 +78,7 @@ menu_map = {
             # Grabs the selected map's Name, description, and data
             "loc_name" : None,
             "loc_text" : None,
-            "loc_opt" : [(None, None),("Back", "game_selection"),]
+            "loc_opt" : ["map_switch(None)",("Back", "game_selection"),]
             },
 
     }
