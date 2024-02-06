@@ -43,28 +43,17 @@ class Game:
         self.description = gme_dict.get("description", None)
         self.map = gme_dict["map"]
 
-#def list_story(story_list):
-#    for each in story_list:
-#       pass 
-#
-#def story_collect():
-#    story_list = []
-#    p = Path("stories")
-#    # for each yaml file in directory
-#    # Open the file
-#    # safe_load it using yaml (converts it to Dictionary)
-#    # add Dictionary to list
-#    for each in list(p.glob('*.[yaml][yml]')):
-#        with open(each) as file:
-#            processed_story = yaml.safe_load(file)
-#            story_list.append(processed_story)
-#    return story_list
+def map_switch():
+    pass
+
+
+
 
 test_list = Gamelist()
 test_list.generate_list()
 map_opt = test_list.name_list()
 
-map = {
+menu_map = {
         "title_screen": {
             "loc_name" : "Welcome to PyTAG",
             "loc_text" : """
@@ -92,9 +81,4 @@ map = {
 
     }
 
-# print(len(test_list.gme_list))
-# print(f"test_list names: {test_list.name_list()}")
-# output_list = test_list.generate_list()
-#print(gamelist.generate_list)
-#for each in test_list:
-#    print(each)
+map = menu_map

@@ -50,10 +50,8 @@ def test_name_list():
     assert type(final_list[0][0]) is str
     assert type(final_list[0][1]) is m.Game
 
-    
+def test_map_switch():
+    pass
 
-
-    # assert type(test_list.gme_list[0][1]) is m.Game
-    # assert test_list.gme_list[0][0] is str
 
 
