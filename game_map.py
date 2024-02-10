@@ -1,6 +1,8 @@
 import yaml
 from pathlib import Path
 
+map = None
+
 class Gamelist:
 
     def __init__(self):
@@ -12,19 +14,13 @@ class Gamelist:
         # Open the file
         # safe_load it using yaml (converts it to Dictionary)
         # add game_object to list
-
         # try to find a way to add yml and yaml
         # print("glob", list(p.glob('*.{yaml,yml}')))
         for each in list(p.glob('*.yaml')):
             with open(each) as file:
                 safeloaded_story = yaml.safe_load(file)
                 processed_story = Game(safeloaded_story)
-                # print(processed_story)
-                # story_object = Game(processed_story)
                 self.gme_list.append(processed_story)
-
-                # print(self.gme_list)
-        # return self.gme_list
 
     def name_list(self):
         game_selections = []
@@ -41,8 +37,6 @@ class Game:
         self.description = gme_dict.get("description", None)
         self.map = gme_dict["map"]
 
-def game_info():
-    pass
 
 def map_switch(game_obj):
     map = game_obj.map

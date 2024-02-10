@@ -59,7 +59,8 @@ def test_map_switch():
     assert type(final_list[0][1]) is m.Game
     # Check if game has map dictionary
     assert type(final_list[0][1].map) is dict
-    assert final_list[0][1].map is "title_screen"
+    # checks if the title_screen subdictionary is attainable
+    assert type(final_list[0][1].map["title_screen"]) is dict
 
 
 
