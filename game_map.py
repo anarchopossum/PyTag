@@ -16,16 +16,18 @@ class Gamelist:
         # add game_object to list
         # try to find a way to add yml and yaml
         # print("glob", list(p.glob('*.{yaml,yml}')))
-        for each in list(p.glob('*.yaml')):
-            with open(each) as file:
+        for yaml_file in list(p.glob('*.yaml')):
+            with open(yaml_file) as file:
                 safeloaded_story = yaml.safe_load(file)
                 processed_story = Game(safeloaded_story)
                 self.gme_list.append(processed_story)
 
     def name_list(self):
         game_selections = []
-        for each in self.gme_list:
-            temp_tup = (each.name, each)
+        for game_obj in self.gme_list:
+            # Todo: Find a way to get the game object to give information to
+            # the map confirmation screen
+            temp_tup = (game_obj.name, game_obj.map['title_screen'])
             game_selections.append(temp_tup)
         game_selections.append(("Back","title_screen"))
         return game_selections 
