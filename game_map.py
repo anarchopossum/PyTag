@@ -1,12 +1,18 @@
 import yaml
+import functions as fnc
 from pathlib import Path
+from functools import partial
 
-map = None
+
+class SwitchGame:
+    def __init__(self, new_game: str):
+        self.new_game = new_game
 
 class Gamelist:
 
     def __init__(self):
         self.gme_list = []
+        self.selected_map = None
 
     def generate_list(self):
         p = Path("stories/")
@@ -27,10 +33,19 @@ class Gamelist:
         for game_obj in self.gme_list:
             # Todo: Find a way to get the game object to give information to
             # the map confirmation screen
-            temp_tup = (game_obj.name, game_obj.map['title_screen'])
+            temp_tup = (game_obj.name, SwitchGame(game_obj.name))
+            print(temp_tup)
+
+
             game_selections.append(temp_tup)
         game_selections.append(("Back","title_screen"))
-        return game_selections 
+        return game_selections
+
+    def get_map(self, game_name):
+        for game in self.gme_list:
+            if game.name == game_name:
+                return game.map
+        raise KeyError(f"Cannot find game {game_name}")
 
 class Game:
     def __init__(self,gme_dict) -> None:
@@ -39,44 +54,41 @@ class Game:
         self.description = gme_dict.get("description", None)
         self.map = gme_dict["map"]
 
+def game_select(menu_map, game_obj):
+   menu_map["game_confirmation"]["loc_name"] = game_obj.name
+   menu_map["game_confirmation"]["loc_title"] = game_obj.description
+   menu_map["game_confirmation"]["loc_opt"] = [("Accept",game_start(game_obj.map)), ("Back","game_selection")]
 
-def map_switch(game_obj):
-    map = game_obj.map
-    return ("Accept","title_screen")
+def game_start(game_map):
+       cur_position = game_map["title_screen"]
+       while True:
+           new_loc = fnc.prompt(cur_position["loc_name"],cur_position["loc_text"],cur_position["loc_opt"])
+           cur_position = game_map[new_loc]
+           
 
-
-
-
-test_list = Gamelist()
-test_list.generate_list()
-map_opt = test_list.name_list()
-
-menu_map = {
-        "title_screen": {
-            "loc_name" : "Welcome to PyTAG",
-            "loc_text" : """
-            Welcome to the test game. You can quit the game at any point just type q and hit enter. Best of luck! This is currently a demo. If you would like to make your own story. try to modify the map.py file
-            type the letter a to go to the next area
-            """,
-            "loc_opt": [("Start Game", "game_selection"),
-                        ("Options", "options")]
+def make_main_menu(map_opt):
+    return {
+            "title_screen": {
+                "loc_name" : "Welcome to PyTAG",
+                "loc_text" : """
+                Welcome to the test game. You can quit the game at any point just type q and hit enter. Best of luck! This is currently a demo. If you would like to make your own story. try to modify the map.py file
+                type the letter a to go to the next area
+                """,
+                "loc_opt": [("Start Game", "game_selection"),
+                            ("Options", "options")]
+                },
+            "game_selection": {
+                "loc_name" : "Game Select",
+                "loc_text" : """
+                Select a Game to play
+                """,
+                # Grabs the list of maps
+                "loc_opt": map_opt
             },
-
-        "game_selection": {
-            "loc_name" : "Game Select",
-            "loc_text" : """
-            Select a Game to play
-            """,
-            # Grabs the list of maps
-            "loc_opt": map_opt 
-        },
-        "game_confirmation": {
-            # Grabs the selected map's Name, description, and data
-            "loc_name" : None,
-            "loc_text" : None,
-            "loc_opt" : ["map_switch(None)",("Back", "game_selection"),]
-            },
-
-    }
-
-map = menu_map
+            "game_confirmation": {
+                # Grabs the selected map's Name, description, and data
+                "loc_name" : "",
+                "loc_text" : "",
+                "loc_opt" : ["map_switch(None)",("Back", "game_selection"),]
+                },
+        }
