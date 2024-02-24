@@ -2,7 +2,7 @@ import os
 import time
 
 line_len = 54
-
+border = '█'
 
 class location():
     def __init__(self, loc_data: dict) -> None:
@@ -38,12 +38,12 @@ def text_format(location:str, text: str):
     bar_amount = int(( line_len - len(location) - 2) / 2)
     # If title is even add an extra bar, else it's Gucci
     if bar_amount % 2 == 0:
-        print("█" * bar_amount,f"{location}", "█" * bar_amount, end="█\n")
+        print(border * bar_amount,f"{location}", border * bar_amount, end=f"{border}\n")
     else:
-        print("█" * bar_amount,f"{location}", "█" * bar_amount)
+        print(border * bar_amount,f"{location}", border * bar_amount)
 
-    # print("█" * line_len)
-    print(f"█  {' ':^48}  █")
+    # print(border * line_len)
+    print(f"{border}  {' ':^48}  {border}")
     # line text formater
     words = text.split()
     temp_str = ''
@@ -53,22 +53,22 @@ def text_format(location:str, text: str):
         if len(temp_str + value) + 1 <= 50:
             temp_str += value + " "
             if value == words[-1]:
-                print(f"█ {temp_str:<50} █")
+                print(f"{border} {temp_str:<50} {border}")
         else:
         # if it's greater than 50 print the line and set the tep string to the current word.
-            print(f"█ {temp_str:<50} █")
+            print(f"{border} {temp_str:<50} {border}")
             temp_str = value + " "
-    print(f"█  {' ':^48}  █")
-    print("█" * line_len)
+    print(f"{border}  {' ':^48}  {border}")
+    print(border * line_len)
 
 def opt_format(options: tuple):
     formatted_dict = tup2dict(options)
-    print(f"█  {' ':^48}  █")
+    print(f"{border}  {' ':^48}  {border}")
     for key, selection in formatted_dict.items():
-        print(f"█ {key+') '+selection[0]: <50} █")
+        print(f"{border} {key+') '+selection[0]: <50} {border}")
         # print(f"{selection[1]}")
-    print(f"█  {' ':^48}  █")
-    print("█" * line_len)
+    print(f"{border}  {' ':^48}  {border}")
+    print(border * line_len)
     return formatted_dict
 
 def clear_screen():
