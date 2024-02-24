@@ -1,7 +1,7 @@
 import yaml
-import functions as fnc
+# import functions as fnc
 from pathlib import Path
-from functools import partial
+# from functools import partial
 
 
 class SwitchGame:
@@ -54,16 +54,16 @@ class Game:
         self.description = gme_dict.get("description", None)
         self.map = gme_dict["map"]
 
-def game_select(menu_map, game_obj):
-   menu_map["game_confirmation"]["loc_name"] = game_obj.name
-   menu_map["game_confirmation"]["loc_title"] = game_obj.description
-   menu_map["game_confirmation"]["loc_opt"] = [("Accept",game_start(game_obj.map)), ("Back","game_selection")]
+# def game_select(menu_map, game_obj):
+#   menu_map["game_confirmation"]["loc_name"] = game_obj.name
+#   menu_map["game_confirmation"]["loc_title"] = game_obj.description
+#   menu_map["game_confirmation"]["loc_opt"] = [("Accept",game_start(game_obj.map)), ("Back","game_selection")]
 
-def game_start(game_map):
-       cur_position = game_map["title_screen"]
-       while True:
-           new_loc = fnc.prompt(cur_position["loc_name"],cur_position["loc_text"],cur_position["loc_opt"])
-           cur_position = game_map[new_loc]
+# def game_start(game_map):
+# cur_position = game_map["title_screen"]
+#       while True:
+#           new_loc = fnc.prompt(cur_position["loc_name"],cur_position["loc_text"],cur_position["loc_opt"])
+#           cur_position = game_map[new_loc]
            
 
 def make_main_menu(map_opt):
