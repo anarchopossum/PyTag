@@ -1,0 +1,41 @@
+game_name: The Quest for the Ultimate Crunch
+description: You are hungry and hungover go get some food
+map:
+  title_screen:
+    loc_name: "Taco Bell Simulator"
+    loc_text: >
+      You woke up at your office cubicle after a late night office party. First thing you notice is the throbbing pain in your head and your boss half naked next to the water dispenser. 
+      You noticed that you are hungry, but remember you lost your wallet about 3 weeks ago. You see a Taco Bell sauce packet and that convinced you to go to Taco Bell. are you up for a 3PM meal?
+    loc_opt:
+      - [Start, office]
+  office:
+    loc_name: office
+    loc_text: >
+      You are hungry and need cash you look around your cubical and your neighbor Samuel's cubical. Nothing. you remember to you saw your boss laying on the floor. you walk up to him.
+    loc_opt:
+      - [Take his wallet, office_steal]
+      - [Wake Him up,office_wake]
+  office_steal:
+    loc_name: office
+    loc_text: >
+      You check your bosses back pocket. you find his wallet, his car keys, and two expired condoms. you take them all and you look inside the wallet. You see a picture of his
+      family that he ended up divorcing from to pursuit office parties and a wad of cash. You think to yourself, "That's where all my labor is going."
+    loc_opt:
+      - ["Take his wallet", "Garage"]
+  office_wake:
+    loc_name: office
+    loc_text: >
+      You wake up your boss, He looks like he is in a lot of pain too. He then notices you, stands up and looks around. After a long pause, He looks at you again and blames you for the mess.
+      Other employees that are waking up from his yelling start to grown. Odd how no one called them after they didn't get back home last night. Their family members must really care for them.
+      Anyways, your boss fires you and you are still hungry.
+      GAME OVER
+    loc_opt:
+      - ["Restart?", "title_screen"]
+  Garage:
+    loc_name: "office"
+    loc_text: >
+      After taking your bosses stuff, you stumble down to the parking garage. You see at your beatup shitbox at the other end and you see your bosses Porsche in the reserve space. which one do you take?
+    loc_opt:
+      - [I'll take my Trusty ShitBox!, Shitbox]
+      - [I'll take what should be mine!, Porsche]
+      - [I'll take the bus, be Eco!, Bus]
