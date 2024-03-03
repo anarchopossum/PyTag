@@ -34,7 +34,7 @@ class Gamelist:
             # Todo: Find a way to get the game object to give information to
             # the map confirmation screen
             temp_tup = (game_obj.name, SwitchGame(game_obj.name))
-            print(temp_tup)
+            # print(temp_tup)
 
 
             game_selections.append(temp_tup)

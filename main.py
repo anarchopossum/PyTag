@@ -16,9 +16,11 @@ def main():
             case str():
                 cur_position = current_game[new_loc]
             case m.SwitchGame():
-                print(new_loc.new_game)
+                # Debug Shows New Game Based on selection
+                # print(new_loc.new_game)
                 current_game = game_list.get_map(new_loc.new_game)
-                print(current_game)
+                # Debug Shows Current Game File
+                # print(current_game)
                 cur_position = current_game['title_screen']
 
 if __name__ == '__main__':
